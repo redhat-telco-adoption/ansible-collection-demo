@@ -1,0 +1,4 @@
+---
+collections:
+  - name: demo.demo_collection
+    version: 1.0.2

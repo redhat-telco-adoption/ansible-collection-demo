@@ -1,0 +1,26 @@
+---
+version: 3
+
+build_arg_defaults:
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvvv'
+
+dependencies:
+  galaxy: dependencies/requirements.yml
+  python: dependencies/requirements.txt
+  system: dependencies/bindep.txt
+
+images:
+  base_image: 
+    name: registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8:latest
+
+options:
+  package_manager_path: /usr/bin/microdnf
+
+additional_build_steps:
+  prepend_galaxy:
+    # SEE: https://ansible.readthedocs.io/projects/builder/en/latest/scenario_guides/scenario_custom/
+    - ARG PAH_TOKEN
+    - ENV ANSIBLE_GALAXY_SERVER_LIST=pah,community
+    - ENV ANSIBLE_GALAXY_SERVER_PAH_URL=https://hub.sandbox342.opentlc.com/api/galaxy/
+    - ENV ANSIBLE_GALAXY_SERVER_PAH_TOKEN=${PAH_TOKEN}
+    - ENV ANSIBLE_GALAXY_SERVER_COMMUNITY_URL=https://galaxy.ansible.com
