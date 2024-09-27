@@ -1,0 +1,12 @@
+---
+- name: Demo playbook using our collection
+  hosts: localhost
+
+  tasks:
+    - name: Use the demo role
+      ansible.builtin.include_role:
+        name: demo.demo_collection.demo_role
+
+    - name: Display the demo message
+      ansible.builtin.debug:
+        msg: "{{ demo_message }}"

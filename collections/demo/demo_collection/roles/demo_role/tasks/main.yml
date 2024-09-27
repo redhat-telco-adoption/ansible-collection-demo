@@ -1,0 +1,10 @@
+---
+# tasks file for demo_role
+
+- name: Set demo message
+  ansible.builtin.set_fact:
+    demo_message: "Hello from the demo_role in demo.demo_collection!"
+
+- name: Display demo message
+  ansible.builtin.debug:
+    msg: "{{ demo_message }}"

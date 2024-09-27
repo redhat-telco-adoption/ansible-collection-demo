@@ -1,0 +1,4 @@
+*.zip
+*.gz
+ansible.cfg
+execution-environment/context
